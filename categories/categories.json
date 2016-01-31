@@ -1,0 +1,14 @@
+{
+  "categories": [
+    {
+      "id": 1,
+      "category": "smartphones"
+      "location": "/smartphones"
+    },
+    {
+      "id": 2,
+      "category": "earphones"
+      "location": "/earphones"
+    }
+  ]
+}

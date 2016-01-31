@@ -1,0 +1,16 @@
+{
+  "earphones": [
+    {
+      "id": 1,
+      "brand": "Beats",
+      "name": "Solo 2",
+      "Prize": "299",
+    },
+    {
+      "id": 2,
+      "brand": "Beats",
+      "name": "ur Beats",
+      "Prize": "99",
+    }
+  ]   
+}

@@ -1,0 +1,22 @@
+{
+  "name": "MakeMyChoice",
+  "homepage": "https://github.com/PugliaSOS/MakeMyChoice",
+  "authors": [
+    "MessineseGianluca <gianluca.messi1@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery-ui": "jqueryui#^1.11.4",
+    "jquery": "2.2.0"
+  }
+}
