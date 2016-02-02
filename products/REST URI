@@ -1,0 +1,53 @@
+#### CATEGORIES ####
+
+GET /categories/{id_category}
+  input:/
+  output: {"id":1, "name":"smartphones", "location":"/products/smartphones"}
+
+GET /categories
+ -input: /
+ -output: [{"id":1, "name":"smartphones", "location":"/products/smartphones"},
+           {"id":2, "name":"earphones", "location":"/products/earphones"}]
+
+POST /categories
+ -input: {"id":3, "name":"TV", "location":"/products/earphones"}
+ -output: 201
+
+PUT /categories/{id_category}
+ -input: {"id":3, "name":"TV", "location":"/products/earphones"}
+ -output: 200
+
+DELETE /categories/{id_category}
+ -input: /
+ -output: 200
+
+
+
+#### Products ####
+
+GET /products/smartphones/{id_smartphone}
+  input:/    
+  output: {"id":1, "brand":"Apple Inc.", "name":"Iphone 6s", "price":"699"}
+
+GET /products/smartphones?price="499"
+  input: /
+  output: {"id":2, "brand":"Samsung", "name":"s6", "price":"499"} 
+   
+
+GET /products/smartphones
+ -input: /
+ -output: [{"id":1, "brand":"Apple Inc.", "name":"Iphone 6s", "price":"699"},
+           {"id":2, "brand":"Samsung", "name":"s6", "price":"499"}]
+
+POST /products/smartphones
+ -input: {"id":3, "brand":"Apple Inc.", "name":"Iphone 4s", "price":"199"}
+ -output: 201
+
+PUT /products/{id_smartphone}
+ -input: {"id":3, "name":"TV", "location":"/products/earphones"}
+ -output: 200
+
+DELETE /products/{id_smartphone}
+ -input: /
+ -output: 200
+

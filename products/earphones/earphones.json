@@ -4,13 +4,13 @@
       "id": 1,
       "brand": "Beats",
       "name": "Solo 2",
-      "Prize": "299",
+      "Price": "299",
     },
     {
       "id": 2,
       "brand": "Beats",
       "name": "ur Beats",
-      "Prize": "99",
+      "Price": "99",
     }
   ]   
 }

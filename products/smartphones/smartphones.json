@@ -4,20 +4,19 @@
       "id": 1,
       "brand": "Apple Inc.",
       "name": "Iphone s6",
-      "Prize": "699",
+      "price": "699"
     },
     {
       "id": 2,
       "brand": "Samsung",
       "name": "Galaxy s6",
-      "Prize": "450",
-      "id_category": 1
+      "price": "450"
     },
     {
       "id": 3,
       "brand": "Asus",
       "name": "Zenfone 2 Selfie",
-      "Prize": "299"
+      "price": "299"
     }
   ]   
 }
