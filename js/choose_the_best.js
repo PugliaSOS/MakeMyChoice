@@ -1,5 +1,3 @@
-"use strict";
-
 var smartphones = [
     {
       name: "Iphone 6s",
@@ -21,7 +19,7 @@ var smartphones = [
     }
 ];
 
-function chooseTheBest(ram, camera,  price) {
+var choose_the_best = function (ram, camera,  price) {
 
     var preferences = {ram: ram, camera: camera, price: price};
     var best_matching = {name: "", score: 0};
@@ -43,6 +41,4 @@ function chooseTheBest(ram, camera,  price) {
     return best_matching.name;
 }
 
-console.log(chooseTheBest(5, 5, 10));
-
-
+module.exports.chooseTheBest = choose_the_best;
