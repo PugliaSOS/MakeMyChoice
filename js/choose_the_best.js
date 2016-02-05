@@ -23,25 +23,24 @@ var smartphones = [
 
 function chooseTheBest(ram, camera,  price) {
 
-    var preferences = [{ram: ram, camera: camera, price: price}];
-    var best_matching = [{name: "", score: 0}];
+    var preferences = {ram: ram, camera: camera, price: price};
+    var best_matching = {name: "", score: 0};
     var score = 0;
 
-    for(var i = 0; i < smartphones.length; i++){
+    for(var i = 0; i < smartphones.length; i++) {
       score = 
-        (smartphones[i].ram * preferences[0].ram) +
-        (smartphones[i].camera * preferences[0].camera) + 
-        (preferences[0].price / smartphones[i].price);
-      
-      score = Math.abs(score);      
+        (smartphones[i].ram * preferences.ram) +
+        (smartphones[i].camera * preferences.camera) + 
+        (preferences.price / smartphones[i].price);
+            
 
-      if(score > best_matching[0].score) { 
-        best_matching[0].name = smartphones[i].name;
-        best_matching[0].score = score;
+      if(score > best_matching.score) { 
+        best_matching.name = smartphones[i].name;
+        best_matching.score = score;
       }
     }
     
-    return best_matching[0].name;
+    return best_matching.name;
 }
 
 console.log(chooseTheBest(5, 5, 10));

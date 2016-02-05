@@ -25,29 +25,29 @@ DELETE /categories/{id_category}
 
 #### Products ####
 
-GET /products/smartphones/{id_smartphone}
+GET /categories/{category_id}/products/{product_id}
   input:/    
-  output: {"id":1, "brand":"Apple Inc.", "name":"Iphone 6s", "price":"699"}
+  output: {"id":1, "brand":"Apple Inc.", "name":"Iphone 6s", "price":699}
 
-GET /products/smartphones?price="499"
+GET /categories/{category_id}/products?price=499
   input: /
-  output: {"id":2, "brand":"Samsung", "name":"s6", "price":"499"} 
+  output: {"id":2, "brand":"Samsung", "name":"s6", "price":499} 
    
+#products sorted by preferences
+GET /categories/{category_id}/products
+ -input: {"price":399}
+ -output: [{"id":1, "brand":"Apple Inc.", "name":"Iphone 6s", "price":699},
+           {"id":2, "brand":"Samsung", "name":"s6", "price":499}]
 
-GET /products/smartphones
- -input: /
- -output: [{"id":1, "brand":"Apple Inc.", "name":"Iphone 6s", "price":"699"},
-           {"id":2, "brand":"Samsung", "name":"s6", "price":"499"}]
-
-POST /products/smartphones
- -input: {"id":3, "brand":"Apple Inc.", "name":"Iphone 4s", "price":"199"}
+POST /categories/{category_id}/products
+ -input: {"id":3, "brand":"Apple Inc.", "name":"Iphone 4s", "price":199}
  -output: 201
 
-PUT /products/{id_smartphone}
- -input: {"id":3, "name":"TV", "location":"/products/earphones"}
+PUT /categories/{category_id}/products/{id_product}
+ -input: {"id":3, "price": 159}
  -output: 200
 
-DELETE /products/{id_smartphone}
+DELETE /categories/{category_id}/products/{id_product}
  -input: /
  -output: 200
 
