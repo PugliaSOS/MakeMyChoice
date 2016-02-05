@@ -1,3 +1,4 @@
-var my_product = require('./choose_the_best');
+var myProduct = require('./choose_the_best');
 
-console.log(my_product.chooseTheBest(10, 5, 7));
+console.log(myProduct.chooseTheBest(5, 5, 5));
+
