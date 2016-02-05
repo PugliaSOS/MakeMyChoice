@@ -1,19 +1,19 @@
 var smartphones = [
     {
       name: "Iphone 6s",
-      ram: 2,
+      ram: 4096,
       camera: 8,
       price: 900
     },
     {
       name: "Samsung s6",
-      ram: 4,
+      ram: 2048,
       camera: 16,
       price: 499
     },
     {
       name: "Asus Zenfone Selfie",
-      ram: 2,
+      ram: 1024,
       camera: 3,
       price: 199
     }
