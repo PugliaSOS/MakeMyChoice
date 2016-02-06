@@ -1,4 +1,3 @@
-
 var _ = require('lodash');
 
 var smartphones = [
@@ -28,7 +27,9 @@ var smartphones = [
 
 function findPriority(value, max, min) {
     if(value === max) return 10;
+
     else if(value === min) return 0;
+
     return ((value - min) * 10 / (max - min));
 }
 
@@ -36,6 +37,7 @@ var chooseTheBest = function (ram, camera,  price) {
 
     var maxRam = _.maxBy(smartphones, function(o) { return o.ram; });
     var minRam = _.minBy(smartphones, function(o) { return o.ram;});
+
     var maxCamera = _.maxBy(smartphones, function(o) { return o.camera; });
     var minCamera = _.minBy(smartphones, function(o) { return o.camera;});
     
