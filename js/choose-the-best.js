@@ -1,6 +1,7 @@
 var _ = require('lodash');
 
-var smartphones = [
+var db = {
+	smartphones:[
     {
       name: "Iphone 6s",
       ram: 4096,
@@ -22,7 +23,34 @@ var smartphones = [
       price: 199,
       priority: 0
     }
-];
+],
+cars:[
+  {
+	  name: "fiat 500",
+    color: "yellow", 
+	  engine: 100,
+    power: 400,
+    price: 100,
+    priority: 0
+  },
+  {
+    name: "mini",
+    color: "red",
+    engine: 200,
+    power: 230,
+    price: 220,
+    priority: 0
+  },
+  {
+    name: "mercedes",
+    color: "red",
+    engine: 300,
+    power: 520,
+    price: 200,
+    priority: 0
+  }
+]
+};
 
 
 function findPriority(value, max, min) {
@@ -33,36 +61,31 @@ function findPriority(value, max, min) {
     return ((value - min) * 10 / (max - min));
 }
 
-var chooseTheBest = function (ram, camera,  price) {
 
-    var maxRam = _.maxBy(smartphones, function(o) { return o.ram; });
-    var minRam = _.minBy(smartphones, function(o) { return o.ram;});
-
-    var maxCamera = _.maxBy(smartphones, function(o) { return o.camera; });
-    var minCamera = _.minBy(smartphones, function(o) { return o.camera;});
+var chooseTheBest = function (category, preferences) {
     
-    for(var i = 0; i < smartphones.length; i++) {   
-        
-        smartphones[i].priority =    
-            ram * findPriority(
-                smartphones[i].ram, 
-                maxRam.ram, 
-                minRam.ram
-            );      
-        
-        smartphones[i].priority += 
-            (camera * findPriority(
-                   smartphones[i].camera,
-                   maxCamera.camera,
-                   minCamera.camera
-                )
-            );
-        
-        smartphones[i].priority += price / smartphones[i].price;
-        
+	var arr = db[category];
+	
+	for(var j in preferences) {
+    if( j !== "price") {
+	    var max = _.maxBy(arr, function(o) { return o[j]; });
+		  var min = _.minBy(arr, function(o) { return o[j]; });
     }
+    for(var i = 0; i < arr.length; i++) {
+      if(j === "price") 
+        arr[i].priority += preferences[j] / arr[i][j];
     
-    return  _.sortBy(smartphones, function(o) { return o.priority; }).reverse();
-};
+      else 
+        arr[i].priority += 
+          preferences[j] * 
+          findPriority(arr[i][j], max[j], min[j] )
+        ;
+    }  
+
+	}
+	
+  return _.sortBy(arr, function(o) { return o.priority; }).reverse();
+
+}
 
 module.exports.chooseTheBest = chooseTheBest;
