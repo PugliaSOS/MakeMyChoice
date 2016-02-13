@@ -22,9 +22,7 @@ DELETE /categories/{id_category}
  -output: 200
 
 
-
 #### Products ####
-
 GET /categories/{category_id}/products/{product_id}
   input:/    
   output: {"id":1, "brand":"Apple Inc.", "name":"Iphone 6s", "price":699}
