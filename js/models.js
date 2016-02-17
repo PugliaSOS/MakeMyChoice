@@ -1,15 +1,20 @@
 var mongoose = require('mongoose'); 
 
-module.exports.categorySchema = new mongoose.Schema({
+var categorySchema = new mongoose.Schema({
 	title: String 
 });
 
-module.exports.Category  = mongoose.model('Categories', categorySchema);
+var Category = mongoose.model('Categories', categorySchema);
 
-module.exports.itemSchema = new mongoose.Schema({
+var itemSchema = new mongoose.Schema({
 	title: String,
-	category: [categorySchema]
+	category: [Category]
 	// other attributes added dinamically
 });
 
-module.exports.Item = mongoose.model('Items', itemSchema);
+var Item = mongoose.model('Items', itemSchema);
+
+module.exports.categorySchema = categorySchema;
+module.exports.Category = Category;
+module.exports.itemSchema = itemSchema;
+module.exports.Item = Item;
