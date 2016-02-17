@@ -6,10 +6,10 @@ module.exports.categorySchema = new mongoose.Schema({
 
 module.exports.Category  = mongoose.model('Categories', categorySchema);
 
-module.exports.productSchema = new mongoose.Schema({
+module.exports.itemSchema = new mongoose.Schema({
 	title: String,
 	category: [categorySchema]
 	// other attributes added dinamically
 });
 
-module.exports.Product = mongoose.model('Products', productSchema);
+module.exports.Item = mongoose.model('Items', itemSchema);
