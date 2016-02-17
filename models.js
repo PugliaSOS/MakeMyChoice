@@ -8,7 +8,7 @@ var itemSchema = new mongoose.Schema({
 }, {strict: false});
 
 
-var Item = mongoose.model('Items', itemSchema);
+var Item = mongoose.model('Item', itemSchema);
 
 module.exports.itemSchema = itemSchema;
 module.exports.Item = Item;
