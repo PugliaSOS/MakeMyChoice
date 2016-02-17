@@ -12,4 +12,4 @@ module.exports.productSchema = new mongoose.Schema({
 	// other attributes added dinamically
 });
 
-module.exports.Product = mongoose.model('Products', productsSchema);
+module.exports.Product = mongoose.model('Products', productSchema);
