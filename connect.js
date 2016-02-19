@@ -1,12 +1,13 @@
-var mongoose = require('mongoose');
-mongoose.connect('mongodb://host/database');
-
-// check connection
-if(mongoose.connection.readyState != 1){
-    console.log('failed connection');
-    process.exit(1);
-} else {
-    console.log('successful connection');
-    var db = mongoose.connection;
-    // db operations
+var getInformations = function() {
+	var uri = 'mongodb://localhost/MakeMyChoice';
+	var options = {
+  		//db: { native_parser: true },
+  		//server: { poolSize: 5 },
+  		//replset: { rs_name: 'myReplicaSetName' },
+  		user: '',
+  		pass: ''
+	};
+	return [uri, options];
 }
+
+module.exports.getInformations = getInformations;
