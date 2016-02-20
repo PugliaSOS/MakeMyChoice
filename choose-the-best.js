@@ -4,7 +4,7 @@ var mongoose = require('mongoose');
 var connection = require('./connect.js')
 
 
-infos = connection.getInformations();
+var infos = connection.getInformations();
 mongoose.connect(infos[0], infos[1]);
 
 var db = mongoose.connection;
@@ -89,62 +89,54 @@ function createDocumentsAndInsertIntoDB(){
 
 function loadItemsFromDB(categoryName, callback) {
     var Item = models.Item;
-    var items;
-    Item.find({category: categoryName}, function(err, res){
-        if(err) return console.error(err);
-        items = _.clone(res, true); // no clone
-        console.log(items);
-    callback(err, items)});
+    Item.find({category: categoryName}, callback);
 }
 
-function loadList (list, items) {
-    for(var element in items) {
-        list.push(new Object());
-        list[element].item = items[element];
-        list[element].priority = 0;
+function getList(items) {
+    var list = [];
+    for(var i in items) {
+        list.push({
+            item : items[i],
+            priority : 0
+        });
     }
+    return list;
 }
 
 function findPriority(value, max, min) {
     return ((value - min) * 10 / (max - min));
 }
 
-var chooseTheBest = function (category, preferences) {
-  
-  var list = [];
-  loadItemsFromDB(category, function(err, items){
+var chooseTheBest = function (category, preferences, callback) {
+    loadItemsFromDB(category, function(err, items){
+        if(err) {
+            return callback(err);
+        }
+        var list = getList(items);
+        for(var feature in preferences) {
+            var temp = {
+                feature: preferences[feature],
+                item: null
+            };
+            for(var i in list) {
+                if(list[i].item.features[feature] >= temp.feature) {
+                    temp.feature = list[i].item.features[feature];
+                    temp.item = i;
+                }
+            }
+            if(temp.item != null) {
+                list[temp.item].priority++;
+            }
+        }
 
-      loadList(list, items);  
-
-    	var arr = items[category];
-    	
-    	for(var j in preferences) {
-        //if( j !== "price") {
-    	    var max = _.maxBy(list, function(o) { return o[j]; });
-    		  var min = _.minBy(list, function(o) { return o[j]; });
-        //}
-        for(var i = 0; i < arr.length; i++) {
-          //if(j === "price") 
-          //  arr[i].priority += preferences[j] / arr[i][j];
-        
-          //else 
-            arr[i].priority += 
-              preferences[j] * 
-              findPriority(arr[i][j], max[j], min[j] )
-            ;
-        }  
-
-    	}
-  });
-	
-  return _.sortBy(arr, function(o) { return o.priority; }).reverse();
-
+        _.sortBy(list, function(o){ return o.priority });
+        callback(null, list);
+    });
 }
 
 db.on('connected', function () {  
-    //createDocumentsAndInsertIntoDB();
-    loadItemsFromDB('Smartphones');
-    //chooseTheBest('Smartphones', {ram: 2048, camera: 8, price: 200}));
+    createDocumentsAndInsertIntoDB();
+    chooseTheBest('Smartphones', {ram: 2048, camera: 8, price: 200});
 });
 
-//module.exports.chooseTheBest = chooseTheBest;
+module.exports.chooseTheBest = chooseTheBest;
