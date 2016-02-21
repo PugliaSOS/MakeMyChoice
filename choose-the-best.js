@@ -1,17 +1,11 @@
 var _ = require('lodash');
 var models = require('./models.js')
 var mongoose = require('mongoose');
-var connection = require('./connect.js')
-
-
-var infos = connection.getInformations();
-mongoose.connect(infos[0], infos[1]);
-
-var db = mongoose.connection;
 
 function createDocumentsAndInsertIntoDB(){
+    //call Iten model
     var Item = models.Item;
-
+    //define a var where will be all the products
     var items = [
         iphone6s  = new Item({
             title: 'Apple iPhone 6S',
@@ -77,7 +71,7 @@ function createDocumentsAndInsertIntoDB(){
         })
     ]
 
-    // insert documents into MakeMyChoiceDB
+    // insert documents into MakeMyChoiceDB (store all products in DB)
     for (var element in items) {
         items[element].save(function(err, element) {
             if(err) {
@@ -87,11 +81,14 @@ function createDocumentsAndInsertIntoDB(){
     }    
 }
 
+//Finss all stored products of a several category and executes a callback
+//in case of success
 function loadItemsFromDB(categoryName, callback) {
     var Item = models.Item;
     Item.find({category: categoryName}, callback);
 }
 
+//produces an ordered list 
 function getList(items) {
     var list = [];
     for(var i in items) {
@@ -103,16 +100,21 @@ function getList(items) {
     return list;
 }
 
+//Find the priority of each interested product
 function findPriority(value, max, min) {
     return ((value - min) * 10 / (max - min));
 }
 
 var chooseTheBest = function (category, preferences, callback) {
-    loadItemsFromDB(category, function(err, items){
+    loadItemsFromDB(category, function(err, items) {
+        
+        /*************** CALLBACK *****************/
         if(err) {
             return callback(err);
         }
+
         var list = getList(items);
+
         for(var feature in preferences) {
             var temp = {
                 feature: preferences[feature],
@@ -133,10 +135,5 @@ var chooseTheBest = function (category, preferences, callback) {
         callback(null, list);
     });
 }
-
-db.on('connected', function () {  
-    createDocumentsAndInsertIntoDB();
-    chooseTheBest('Smartphones', {ram: 2048, camera: 8, price: 200});
-});
 
 module.exports.chooseTheBest = chooseTheBest;

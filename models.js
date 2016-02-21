@@ -1,5 +1,6 @@
 var mongoose = require('mongoose'); 
 
+//defines a schema which describe products pattern
 var itemSchema = new mongoose.Schema(
 	{
 		title: String,
@@ -8,7 +9,7 @@ var itemSchema = new mongoose.Schema(
 	}
 );
 
+//compiles schema
 var Item = mongoose.model('Item', itemSchema);
 
-module.exports.itemSchema = itemSchema;
 module.exports.Item = Item;
