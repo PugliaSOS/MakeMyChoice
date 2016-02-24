@@ -1,5 +1,5 @@
 var _ = require('lodash');
-var models = require('./models.js')
+var models = require('./models');
 var mongoose = require('mongoose');
 
 function createDocumentsAndInsertIntoDB(){
@@ -69,7 +69,7 @@ function createDocumentsAndInsertIntoDB(){
                 price: 200
             }
         })
-    ]
+    ];
 
     // insert documents into MakeMyChoiceDB (store all products in DB)
     for (var element in items) {
