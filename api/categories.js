@@ -29,9 +29,7 @@ Router.get('/:category', function(req, res) {
 Router.post('/', function(req, res) {
     Item.create(
         {
-            //title: req.params.title,
-            category: req.params.category,
-            //features: req.params.features
+            category: req.params.category
         }, 
         function(err, data) {
             if(err) res.sendStatus(500);
@@ -40,9 +38,12 @@ Router.post('/', function(req, res) {
     );
 });
 
-// PUT /categories/smartphones -> modifies smartphone category
+/* PUT /categories/smartphones -> modifies smartphone category 
+ *for each smartphone item.
+ */ 
+
 Router.put('/:category', function(req, res) {
-    Item.update(
+    Item.Update(
         //Conditions
         {
             category: req.params.category, 
@@ -54,7 +55,7 @@ Router.put('/:category', function(req, res) {
         //Callback
         function(err, data) {
             if(err) res.sendStatus(500);
-            else res.sendStatus(201);
+            else res.sendStatus(200);
         }
     );
 });

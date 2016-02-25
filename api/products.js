@@ -9,23 +9,63 @@ Router.use(require('body-parser').json());
 /************************* Products *******************/
 
 // GET /categories/smartphones/products -> an object with all smartphones
-Router.get('/categories/:category/products', function(req, res) {
-    res.sendStatus(501);
+Router.get('/:category/products', function(req, res) {
+    Item.find({category: req.params.category} ,function(err, data) {
+       if(err) res.sendStatus(500);
+       else res.json(data);
+    });
 });
 
 // GET /categories/smartphones/products/iphone -> an object with a smartphone 
-Router.get('/categories/:category/products/:product', function(req, res) {
-    res.sendStatus(501);
+Router.get('/:category/products/:product', function(req, res) {
+    Item.find(
+    	{
+    		title: req.params.product,
+    		category: req.params.category 
+    	}, 
+    	function(err, data) {
+            if(err) res.sendStatus(500);
+            else res.json(data);
+        }
+    );
 });
+
 
 // POST /categories/smartphones/products -> add a new product into a category
-Router.post('/categories/:category/products', function(req, res) {
-    res.sendStatus(501);
+Router.post('/:category/products', function(req, res) {
+    Item.create(
+    	{
+    		title: req.params.title,
+            category: req.params.category,
+            features: req.params.feature
+    	}, 
+    	function(err, data) {
+           if(err) res.sendStatus(500);
+           else res.sendStatus(201);
+    	}
+    );
 });
 
+
 // PUT /categories/smartphones/products/iphone -> modifies iphone characterstics
-Router.put('/categories/:category/products/:product', function(req, res) {
-    res.sendStatus(501);
+Router.put('/:category/products/:product', function(req, res) {
+    Item.findOneAndUpdate(
+        //Condition
+        {
+        	title: req.params.product,
+        	category: req.params.category
+        },
+        //updates to apply
+        {
+        	title: req.params.newTitle,
+        	category: req.params.newCategory,
+        	feature: req.params.feature
+        },
+        function(err, data) {
+            if(err) sendStatus(500);
+            else sendStatus(200)
+        }
+    );
 });
 
 module.exports = Router;
