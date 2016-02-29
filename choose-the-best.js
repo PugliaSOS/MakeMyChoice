@@ -7,7 +7,7 @@ function createDocumentsAndInsertIntoDB(){
     var Item = models.Item;
     //define a var where will be all the products
     var items = [
-        iphone6s  = new Item({
+        iphone6s = new Item({
             title: 'Apple iPhone 6S',
             category: ['Smartphones'],
             features: {
