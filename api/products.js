@@ -10,62 +10,62 @@ Router.use(require('body-parser').json());
 
 // GET /categories/smartphones/products -> an object with all smartphones
 Router.get('/:category/products', function(req, res) {
-    Item.find({category: req.params.category} ,function(err, data) {
-       if(err) res.sendStatus(500);
-       else res.json(data);
-    });
+  Item.find({category: req.params.category}, '-_id -__v' ,function(err, data) {
+     if(err) res.sendStatus(500);
+     else res.json(data);
+  });
 });
 
 // GET /categories/smartphones/products/iphone -> an object with a smartphone 
-Router.get('/:category/products/:product', function(req, res) {
-    Item.find(
-    	{
-    		title: req.params.product,
-    		category: req.params.category 
-    	}, 
-    	function(err, data) {
-            if(err) res.sendStatus(500);
-            else res.json(data);
-        }
-    );
+Router.get('/:category/products/:product','-_id -__v', function(req, res) {
+  Item.find(
+  	{
+      title: req.params.product,
+      category: req.params.category 
+   	}, 
+   	function(err, data) {
+      if(err) res.sendStatus(500);
+      else res.json(data);
+    }
+  );
 });
 
 
 // POST /categories/smartphones/products -> add a new product into a category
 Router.post('/:category/products', function(req, res) {
-    Item.create(
-    	{
-    		title: req.params.title,
-            category: req.params.category,
-            features: req.params.feature
-    	}, 
-    	function(err, data) {
-           if(err) res.sendStatus(500);
-           else res.sendStatus(201);
-    	}
-    );
+  Item.create(
+   	{
+      title: req.params.title,
+      category: req.params.category,
+      features: req.params.feature
+   	}, 
+  	function(err, data) {
+      if(err) res.sendStatus(500);
+      else res.sendStatus(201);
+   	}
+  );
 });
 
 
 // PUT /categories/smartphones/products/iphone -> modifies iphone characterstics
 Router.put('/:category/products/:product', function(req, res) {
-    Item.findOneAndUpdate(
-        //Condition
-        {
-        	title: req.params.product,
-        	category: req.params.category
-        },
-        //updates to apply
-        {
-        	title: req.params.newTitle,
-        	category: req.params.newCategory,
-        	feature: req.params.feature
-        },
-        function(err, data) {
-            if(err) sendStatus(500);
-            else sendStatus(200)
-        }
-    );
+  Item.findOneAndUpdate(
+    //Condition
+    {
+      title: req.params.product,
+      category: req.params.category
+    },
+    //updates to apply
+    {
+      title: req.params.newTitle,
+      category: req.params.newCategory,
+      feature: req.params.feature
+    },
+    function(err, data) {
+      if(err) sendStatus(500);
+      else sendStatus(200)
+    }
+  );
 });
 
 module.exports = Router;

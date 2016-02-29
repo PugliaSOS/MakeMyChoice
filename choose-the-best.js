@@ -49,7 +49,7 @@ function createDocumentsAndInsertIntoDB(){
         }),
 
         mini = new Item({
-            tile: 'Mini',
+            title: 'Mini',
             category: ['Cars'],
             features: {
                 color: 'red',
@@ -60,7 +60,7 @@ function createDocumentsAndInsertIntoDB(){
         }),
 
         mercedes = new Item({
-            name: 'Mercedes',
+            title: 'Mercedes',
             category: ['Cars'],
             features: {
                 color: 'red',
