@@ -10,20 +10,20 @@ Router.use(require('body-parser').json());
 
 // GET /categories/smartphones/products -> an object with all smartphones
 Router.get('/:category/products', function(req, res) {
-  Item.find({category: req.params.category}, '-_id -__v' ,function(err, data) {
+  Item.find({categories: req.params.category}, '-__v' ,function(err, data) {
      if(err) res.sendStatus(500);
      else res.json(data);
   });
 });
 
 // GET /categories/smartphones/products/iphone -> an object with a smartphone 
-Router.get('/:category/products/:product', function(req, res) {
+Router.get('/:category/products/:productId', function(req, res) {
   Item.find(
   	{
-      title: req.params.product,
-      category: req.params.category 
+      _id: req.params.productId,
+      categories: req.params.category 
    	},
-    '-_id -__v', 
+    '-__v', 
    	function(err, data) {
       if(err) res.sendStatus(500);
       else res.json(data);

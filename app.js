@@ -16,7 +16,7 @@ function createDocumentsAndInsertIntoDB(){
     var items = [
         iphone6s  = new Item({
             title: 'Apple iPhone 6S',
-            category: ['Smartphones'],
+            categories: ['Smartphones'],
             features: {
                 ram: 2048,
                 camera: 12,
@@ -26,7 +26,7 @@ function createDocumentsAndInsertIntoDB(){
 
         galaxyS6 = new Item({
             title: 'Samsung galaxy S6',
-            category: ['Smartphones'],
+            categories: ['Smartphones'],
             features: {    
                 ram: 3072,
                 camera: 16,
@@ -36,7 +36,7 @@ function createDocumentsAndInsertIntoDB(){
 
         zenfoneSelfie = new Item({
             title: 'Asus ZenFone Selfie',
-            category: ['Smartphones'],
+            categories: ['Smartphones'],
             features: {
                 ram: 2048,
                 camera: 13,
@@ -46,7 +46,7 @@ function createDocumentsAndInsertIntoDB(){
 
         fiat = new Item({
             title: 'Fiat 500',
-            category: ['Cars'],
+            categories: ['Cars'],
             features: {
                 color: 'yellow',
                 engine: 100,
@@ -57,7 +57,7 @@ function createDocumentsAndInsertIntoDB(){
 
         mini = new Item({
             title: 'Mini',
-            category: ['Cars'],
+            categories: ['Cars'],
             features: {
                 color: 'red',
                 engine: 200,
@@ -68,7 +68,7 @@ function createDocumentsAndInsertIntoDB(){
 
         mercedes = new Item({
             title: 'Mercedes',
-            category: ['Cars'],
+            categories: ['Cars'],
             features: {
                 color: 'red',
                 engine: 300,

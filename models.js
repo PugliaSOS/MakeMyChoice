@@ -4,7 +4,7 @@ var mongoose = require('mongoose');
 var itemSchema = new mongoose.Schema(
 	{
 		title: String,
-		category: [String],
+		categories: [String],
 		features: mongoose.Schema.Types.Mixed
 	}
 );

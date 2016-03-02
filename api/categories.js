@@ -9,7 +9,7 @@ Router.use(require('body-parser').json());
 
 // GET /categories -> an object with all categories
 Router.get('/', function(req, res) {
-    Item.distinct('category', function(err, data) {
+    Item.distinct('categories', function(err, data) {
         if(err) 
           res.sendStatus(500); //generic error
         else
