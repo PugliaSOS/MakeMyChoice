@@ -34,34 +34,28 @@ Router.get('/:category/products/:product', function(req, res) {
 
 // POST /categories/smartphones/products -> add a new product into a category
 Router.post('/:category/products', function(req, res) {
-  Item.create(req.body, function(err) {
+  Item.create(req.body, function(err, data) {
     if(err) {
-      res.status(500);
+      res.sendStatus(500);
     }
     else {
-      res.status(200);
+      res.sendStatus(200);
     }
   });
 });
 
 
 // PUT /categories/smartphones/products/iphone -> modifies iphone characterstics
-Router.put('/:category/products/:product', function(req, res) {
-  Item.findOneAndUpdate(
-    //Condition
-    {
-      title: req.body.product,
-      category: req.params.category
-    },
+Router.put('/:category/products/:productId', function(req, res) {
+  Item.findByIdAndUpdate(
+    //object to edit
+    req.params.productId,
     //updates to apply
-    {
-      title: req.body.title,
-      category: req.body.category,
-      feature: req.body.features
-    },
+    req.body,
+    //callback
     function(err, data) {
-      if(err) sendStatus(500);
-      else sendStatus(200)
+      if(err) res.sendStatus(500);
+      else res.sendStatus(200)
     }
   );
 });
