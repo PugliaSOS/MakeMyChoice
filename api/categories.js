@@ -17,4 +17,13 @@ Router.get('/', function(req, res) {
     });
 });
 
+
+Router.get('/:category', function(req, res) {
+    Item.findOne({categories: req.params.category}, '-_id categories', function(err, data) {
+        if(err)
+        	res.sendStatus(500);
+        else
+        	res.json(data);
+    }); 
+});
 module.exports = Router;
