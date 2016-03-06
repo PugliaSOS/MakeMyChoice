@@ -34,6 +34,7 @@ Router.get('/:category/products/:productId', function(req, res) {
 
 // POST /categories/smartphones/products -> add a new product into a category
 Router.post('/:category/products', function(req, res) {
+  req.body.categories = req.params.category; 
   Item.create(req.body, function(err, data) {
     if(err) {
       res.sendStatus(500);
