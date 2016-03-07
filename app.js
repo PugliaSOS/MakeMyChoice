@@ -1,22 +1,20 @@
 var mongoose = require('mongoose');
 var config = require('./config');
-//var models = require('./models');
+var Item = require('./models').Item;
 //var chooseTheBest = require('./choose-the-best');
 require('./api'); //it refers to index.js
 
 //Connect to DB using data setted in connect.js(uri, user, pass)
 mongoose.connect(config.mongo.host);
 
-/*createDocumentsAndInsertIntoDB();
+Item.remove({}, createDocumentsAndInsertIntoDB);
 
 function createDocumentsAndInsertIntoDB(){
-    //call Iten model
-    var Item = models.Item;
     //define a var where will be all the products
     var items = [
         iphone6s  = new Item({
             title: 'Apple iPhone 6S',
-            categories: ['Smartphones'],
+            categories: ['smartphones'],
             features: {
                 ram: 2048,
                 camera: 12,
@@ -26,7 +24,7 @@ function createDocumentsAndInsertIntoDB(){
 
         galaxyS6 = new Item({
             title: 'Samsung galaxy S6',
-            categories: ['Smartphones'],
+            categories: ['smartphones'],
             features: {    
                 ram: 3072,
                 camera: 16,
@@ -36,7 +34,7 @@ function createDocumentsAndInsertIntoDB(){
 
         zenfoneSelfie = new Item({
             title: 'Asus ZenFone Selfie',
-            categories: ['Smartphones'],
+            categories: ['smartphones'],
             features: {
                 ram: 2048,
                 camera: 13,
@@ -46,7 +44,7 @@ function createDocumentsAndInsertIntoDB(){
 
         fiat = new Item({
             title: 'Fiat 500',
-            categories: ['Cars'],
+            categories: ['cars'],
             features: {
                 color: 'yellow',
                 engine: 100,
@@ -57,7 +55,7 @@ function createDocumentsAndInsertIntoDB(){
 
         mini = new Item({
             title: 'Mini',
-            categories: ['Cars'],
+            categories: ['cars'],
             features: {
                 color: 'red',
                 engine: 200,
@@ -68,7 +66,7 @@ function createDocumentsAndInsertIntoDB(){
 
         mercedes = new Item({
             title: 'Mercedes',
-            categories: ['Cars'],
+            categories: ['cars'],
             features: {
                 color: 'red',
                 engine: 300,
@@ -87,4 +85,3 @@ function createDocumentsAndInsertIntoDB(){
         });
     }    
 }
-*/
