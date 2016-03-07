@@ -8,7 +8,6 @@ var itemSchema = new mongoose.Schema(
 		features: mongoose.Schema.Types.Mixed
 	}
 );
-
 //compiles schema
 var Item = mongoose.model('Item', itemSchema);
 

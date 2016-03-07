@@ -5,25 +5,15 @@ var Item = require('../models').Item;
 // Middleware to read POST's bodies
 Router.use(require('body-parser').json());
 
-/********************* Categories ********************/
-
 // GET /categories -> an object with all categories
 Router.get('/', function(req, res) {
-    Item.distinct('categories', function(err, data) {
-        if(err) 
-          res.sendStatus(500); //generic error
-        else
-          res.json(data);
-    });
+  
+  	Item.distinct('categories', function(err, data) {
+       	if(err) 
+       		res.sendStatus(500); //generic error
+      	else
+       		res.json(data);
+  	});
 });
 
-
-Router.get('/:category', function(req, res) {
-    Item.findOne({categories: req.params.category}, '-_id categories', function(err, data) {
-        if(err)
-        	res.sendStatus(500);
-        else
-        	res.json(data);
-    }); 
-});
 module.exports = Router;
